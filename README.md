@@ -46,3 +46,4 @@ Want to contribute? Great! Please create a pull request
 ### Todo's
   - Add POST and PUT support
   - Add Swagger API documentation
+  - Add Authentication and Authorization support
