@@ -35,6 +35,10 @@ The in-memory H2 db is configured with some sample data. More can be added by up
 
 * src/main/resources/data-h2.sql
 
+Some additional endpoints of interest are :
+  - http://localhost:8080/health - Provides heartbeat for the application
+  - http://localhost:8080/metrics - General metrics around resource utilization and so on
+
 ### Development
 
 Want to contribute? Great! Please create a pull request
