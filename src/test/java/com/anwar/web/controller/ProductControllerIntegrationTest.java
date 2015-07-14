@@ -72,4 +72,15 @@ public class ProductControllerIntegrationTest {
         //Should have sorted based on name
         assertEquals("Optimus Prime", productData.getName());
     }
+
+    @Test
+    public void shouldReturnErrorResponseForOutOfBoundPageRequest() {
+        final ResponseEntity<ApiError> responseResponseEntity = restTemplate.getForEntity("http://localhost:9009/v1/products?page=1000&size=10&sort=name,ASC", ApiError.class);
+        assertEquals(HttpStatus.BAD_REQUEST, responseResponseEntity.getStatusCode());
+        assertTrue(responseResponseEntity.getHeaders().get("Content-Type").contains("application/json;charset=UTF-8"));
+        final ApiError apiError = responseResponseEntity.getBody();
+        assertNotNull(apiError);
+        assertEquals("_PRODUCTS_NOT_FOUND", apiError.getErrorCode());
+    }
+
 }

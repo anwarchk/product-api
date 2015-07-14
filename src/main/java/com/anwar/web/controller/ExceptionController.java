@@ -17,8 +17,16 @@ public class ExceptionController {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BaseServiceException.class)
+    @ExceptionHandler(ProductNotFoundException.class)
     public ApiError mapProductNotFoundException(ProductNotFoundException exception) {
+        LOG.error("Api Error:", exception);
+        return exception.getApiError();
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoProductsFoundException.class)
+    public ApiError mapNoProductsFoundException(NoProductsFoundException exception) {
         LOG.error("Api Error:", exception);
         return exception.getApiError();
     }
